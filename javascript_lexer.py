@@ -37,17 +37,6 @@ tokens = (
 t_ignore = ' \t\v\r' # whitespace 
 t_jscomment_ignore=' \t\v\r'#whitespace
 
-def t_IDENTIFIER(t):
-    r'[a-zA-Z]+[a-zA-Z_]*'
-    return t
-def t_NUMBER(t):
-    r'[-]?[0-9]+[\.]?[0-9]*'
-    t.value = float(t.value)
-    return t
-def t_STRING(t):
-    r'["](:?[^"]|[\\"])+["]'
-    t.value = t.value[1:-1]
-    return t
 def t_jsonelinecomment(t):
     r'//.*'
     pass
@@ -163,6 +152,20 @@ def t_TRUE(t):
 
 def t_VAR(t):
     r'var'
+    return t
+
+def t_IDENTIFIER(t):
+    r'[a-zA-Z]+[a-zA-Z_]*'
+    return t
+
+def t_NUMBER(t):
+    r'[-]?[0-9]+[\.]?[0-9]*'
+    t.value = float(t.value)
+    return t
+
+def t_STRING(t):
+    r'["](:?[^"]|[\\"])+["]'
+    t.value = t.value[1:-1]
     return t
 
 def t_newline(t):
