@@ -55,11 +55,3 @@ def t_STRING(t):
 def t_WORD(t):
     r'[^ <>\n]+'
     return t
-
-webpage = "This is <b>my</b> webpage!"
-htmllexer = lex.lex()
-htmllexer.input(webpage)
-while True:
-    tok = htmllexer.token()
-    if not tok: break
-    print tok
