@@ -1,15 +1,27 @@
 import ply.lex as lex
 import ply.yacc as yacc
-import html_lexer
-import javascript_lexer
-import html_parser
+import htmltokens
+import jstokens
+import htmlgrammar
 import graphics as graphics
 import htmlinterp
+import urllib
 
-htmllexer = lex.lex(module=html_lexer) 
-htmlparser = yacc.yacc(module=html_parser,tabmodule="parsetabhtml") 
-ast = htmlparser.parse(webpage,lexer=htmllexer) 
-jslexer = lex.lex(module=javascript_lexer)
-graphics.initialize() 
-htmlinterp.interpret(ast) 
-graphics.finalize() 
+#gets page contents
+def get_page(url):
+    try:
+        return urllib.urlopen(url).read()
+    except:
+        return ""
+
+htmllexer = lex.lex(module=htmltokens) 
+htmlparser = yacc.yacc(module=htmlgrammar,tabmodule="parsetabhtml")
+while True:
+	url = raw_input()
+	webpage = get_page(url) 
+	ast = htmlparser.parse(webpage,lexer=htmllexer) 
+	jslexer = lex.lex(module=jstokens)
+	graphics.initialize() 
+	htmlinterp.interpret(ast) 
+	graphics.finalize()
+	print "next!" 
