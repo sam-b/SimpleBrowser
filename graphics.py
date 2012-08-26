@@ -9,10 +9,10 @@ import os
 
 # If you want the output filenames to be different (e.g., based on
 # environment variables), just change them here. 
-output_latex_filename = "./student"   
+output_latex_filename = "./sam"   
 
 # If you want to put the static images elsewhere, just change this. 
-image_directory = "images/"     # make "" for current directory
+image_directory = ""     # make "" for current directory
 
 # The example image output requires these packages:
 #
@@ -168,7 +168,7 @@ def finalize():
         #print "Writing TEX Output: " + output_latex_filename + ".tex"
         outfile.close() 
         #print "Rendering PDF Graphics: " + output_latex_filename + ".pdf"
-        cmd = "pdflatex " + output_latex_filename + ".tex > /dev/null < /dev/null" 
+        cmd = "pdflatex " + output_latex_filename + ".tex > sam < sam" 
         subprocess.call(cmd,shell=True) 
         #print "Rendering PNG Graphics: " + output_latex_filename + ".png"
         cmd = "convert " + output_latex_filename + ".pdf " + \

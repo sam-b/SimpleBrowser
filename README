@@ -1,6 +1,7 @@
 mit license, Sam Brown (sam@datacurse.org)
 
 A simple web browser written in python that renders html and interprets javascript.
+http://www.sammy.ws/test.html can be used as a simple test page.
 
 Dependencies:
 plylex
