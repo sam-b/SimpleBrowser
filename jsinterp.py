@@ -1,3 +1,4 @@
+import optimizer
 class JSReturn(Exception):
         """Phrasing "return" as an exception allows us to break out of
         any nested statement evaluation and return to the caller
@@ -180,6 +181,7 @@ def eval_exp(exp,env):
         return None
 
 def interpret(ast):
+        ast = optimizer.optimize(ast)
         global_env = (None, {"javascript output" : ""}) 
         for elt in ast:
                 eval_elt(elt,global_env) 
